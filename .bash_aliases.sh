@@ -5,8 +5,12 @@
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 alias c="code"
 
+# BREW
+alias b="brew"
+
 ## NAVIGATION
 alias l='ls'
+alias ll='ls -lah'
 
 ## CREATION
 alias mkdir="mkdir -p"
@@ -20,6 +24,9 @@ alias n="npm"
 alias nr="npm run"
 alias ncl="rm -rf node_modules && n i"
 
+## NODE
+alias js="node"
+
 ## NVM
 nvm() {
   source $(brew --prefix nvm)/nvm.sh
@@ -30,7 +37,6 @@ nvm() {
 ## GIT
 alias g="git"
 alias ga="git add"
-alias gacm="git add . && git commit -m"
 alias gs="git status"
 alias gd="git diff"
 alias glog="git log --oneline --decorate --graph"
