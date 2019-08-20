@@ -5,12 +5,8 @@
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 alias c="code"
 
-# BREW
-alias b="brew"
-
 ## NAVIGATION
 alias l='ls'
-alias ll='ls -lah'
 
 ## CREATION
 alias mkdir="mkdir -p"
@@ -23,9 +19,6 @@ alias ex="exit"
 alias n="npm"
 alias nr="npm run"
 alias ncl="rm -rf node_modules && n i"
-
-## NODE
-alias js="node"
 
 ## NVM
 nvm() {
