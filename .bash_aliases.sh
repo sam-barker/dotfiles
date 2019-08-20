@@ -30,6 +30,7 @@ nvm() {
 ## GIT
 alias g="git"
 alias ga="git add"
+alias gacm="git add . && git commit -m"
 alias gs="git status"
 alias gd="git diff"
 alias glog="git log --oneline --decorate --graph"
