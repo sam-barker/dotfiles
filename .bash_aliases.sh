@@ -27,6 +27,8 @@ alias gd="git diff"
 alias gnb="git checkout -b"
 alias glog="git log --oneline --decorate --graph"
 alias gpl="git pull"
-alias gpsh='[[ -z $(git config "branch.$(git symbolic-ref --short HEAD).merge") ]] && git push -u origin $(git symbolic-ref --short HEAD) || git push'
+gpsh() {
+  [[ -z $(git config "branch.$(git symbolic-ref --short HEAD).merge") ]] && git push -u origin $(git symbolic-ref --short HEAD) || git push
+}
 alias gs="git status"
 alias gst="git stash"
