@@ -8,7 +8,6 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'ggreer/the_silver_searcher'
-Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
