@@ -4,7 +4,7 @@ CODE_DIR="$(pwd)"
 NVM_HOME="$HOME/.nvm"
 LIBRARY_DIR="$HOME/libs"
 SECRETS_FILE_PATH="$HOME/.bash_secrets.sh"
-SYMLINK_FILES=( ".bash_aliases.sh" ".bash_constants.sh" ".bash_profile" ".gitconfig" ".hushlogin" ".zshrc" ".vimrc" ".vim")
+SYMLINK_FILES=( ".bash_aliases.sh" ".bash_constants.sh" ".bash_profile" ".gitconfig" ".hushlogin" ".zshrc" )
 OS="$OSTYPE"
 
 update() {
@@ -28,8 +28,16 @@ installVim() {
 
   # Install vim plug for neovim
   if [ ! -d "$HOME/.local/share/nvim/site/autoload" ]; then
+    echo "Installing vim-plug"
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  else
+    echo "Vim-plug is already installed! 👍"
+  fi
+
+  # Create nvim config directory
+  if [ ! -d "$HOME/.config/nvim" ]; then
+    mkdir -p "$HOME/.config/nvim"
   fi
 }
 
@@ -138,8 +146,7 @@ createSymlinks() {
 
   echo "Basic Symlinks created!"
   echo "Creating additional symlinks for Neovim config ..."
-  ln -sf "$CODE_DIR/.vimrc" "$HOME/.nvimrc" && \
-    ln -sf "$CODE_DIR/.vim" "$HOME/.nvim"
+  ln -sf "$CODE_DIR/.nvimrc" "$HOME/.config/nvim/init.vim"
 }
 
 createSecretsFile() {
