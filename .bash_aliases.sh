@@ -3,8 +3,12 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 fi
 
+alias vim="nvim"
 alias v="vim"
 alias c="code"
+clonerepos() {
+ curl "https://api.github.com/users/sam-barker/repos?per_page=1000" | grep -o 'git@[^"]*' | xargs -L1 git clone
+}
 alias cl="clear"
 alias dc="docker-compose"
 alias ex="exit"
