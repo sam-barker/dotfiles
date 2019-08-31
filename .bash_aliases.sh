@@ -32,3 +32,4 @@ gpsh() {
 }
 alias gs="git status"
 alias gst="git stash"
+alias json="python -m json.tool"

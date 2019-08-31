@@ -3,11 +3,32 @@
 CODE_DIR="$(pwd)"
 LIBRARY_DIR="$HOME/libs"
 SECRETS_FILE_PATH="$HOME/.bash_secrets.sh"
-SYMLINK_FILES=( ".bash_aliases.sh" ".bash_constants.sh" ".bash_profile" ".gitconfig" ".hushlogin" ".zshrc" )
+SYMLINK_FILES=( ".bash_aliases.sh" ".bash_constants.sh" ".bash_profile" ".gitconfig" ".hushlogin" ".zshrc" ".vimrc" ".vim")
+OS="$OSTYPE"
+
+update() {
+  if [[ "$OS" == "linux-gpu"]]; then
+    sudo apt-get -y update
+    sudo apt-get -y install git
+  else
+    echo "Update not needed as this is not a Linux system"
+  fi  
+}
+
+installVim() {
+  # Vim needs installing on linux devices
+  if [[ "$OS" == "linux-gpu"]]; then
+    sudo apt-get -y install vim
+  else
+    echo "Vim does not need installing"
+  fi
+}
 
 installBrew() {
-  # Install Homebrew if not already installed
-  if ! BREW_LOC="$(type -p brew)" || [ -z "$BREW_LOC" ]; then
+  if [[ "$OSTYPE" != "darwin"* ]]; then
+    echo "This is not an MacOS system, so brew cannot be installed"
+  elif ! BREW_LOC="$(type -p brew)" || [ -z "$BREW_LOC" ]; then
+    # Install Homebrew if not already installed
     echo " => Installing Homebrew ..." &&
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &&
     echo "Homebrew installed! 👍" &&
@@ -21,8 +42,9 @@ installBrew() {
 }
 
 installVSCode() {
-  # Install VSCode if not already installed
-  if ! CODE_LOC="$(type code)" || [ -z "$CODE_LOC" ]; then
+  if [[ "$OSTYPE" != "darwin"* ]]; then
+    echo "This is not an MacOS system, so VSCode cannot be installed from the command line"
+  elif ! CODE_LOC="$(type code)" || [ -z "$CODE_LOC" ]; then
     echo " => Installing VScode ..." &&
     brew cask install visual-studio-code &&
     echo "VScode installed! 👍"
@@ -31,18 +53,13 @@ installVSCode() {
   fi
 }
 
-installChrome() {
-  local CHROME_LOC="/Applications/Google Chrome.app"
-  if [ ! -x"$CHROME_LOC" ]; then
-    echo " => Installing Google Chrome ..." &&
-    brew cask install google-chrome &&
-    echo "Google Chrome installed! 👍"
-  else
-    echo "Google Chrome already installed! 👍"
-  fi
-}
-
 installFF() {
+  # Firefox comes pre-installed on Ubuntu
+  if [[ "$OSTYPE" == "linux-gpu" ]]; then
+    echo "Linux already has Firefox pre-installed!"
+    return 0
+  fi
+  
   local FF_LOC="/Applications/Firefox.app"
   if [ ! -d "$FF_LOC" ]; then
     echo " => Installing Firefox ..." &&
@@ -54,7 +71,10 @@ installFF() {
 }
 
 installZSH() {
-  if ! ZSH_LOC="$(type zsh)" || [ -z "$ZSH_LOC" ]; then
+  if [[ "$OSTYPE" == "linux-gpu" ]]; then
+    sudo apt-get -y install zsh
+    chsh -s $(which zsh)
+  elif ! ZSH_LOC="$(type zsh)" || [ -z "$ZSH_LOC" ]; then
     echo " => Installing zsh and setting to default shell ..." &&
     brew install zsh && chsh -s `which zsh` &&
     echo "Zsh installed! 👍"
@@ -107,6 +127,8 @@ createSecretsFile() {
 }
 
 echo "Running setup script ..." && \
+  update && \
+  installVim && \
   installBrew && \
   installVSCode && \
   installChrome && \
