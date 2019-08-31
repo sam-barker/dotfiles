@@ -147,6 +147,17 @@ installNVM() {
   fi
 }
 
+installUtils() {
+  echo "Installing other tools"
+  if [[ $OSTYPE == "linux-gnu" ]]; then
+    sudo apt-get install fzf
+    sudo apt-get install silversearcher-ag
+  else
+    brew install fzf
+    brew install the_silver_searcher
+  fi
+}
+
 createSymlinks() {
   echo "Creating symlinks" && \
     cd $HOME

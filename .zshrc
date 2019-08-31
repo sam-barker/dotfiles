@@ -9,3 +9,5 @@
 # Source in ZSH scripts
 . "$ZSH/oh-my-zsh.sh"
 . "$ZSH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

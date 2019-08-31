@@ -27,3 +27,4 @@ export SECRETS_DIR="$HOME/.secrets"
 
 # Libs
 export LIBRARY_DIR="$HOME/libs"
+
