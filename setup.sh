@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
 CODE_DIR="$(pwd)"
+NVM_HOME="$HOME/.nvm"
 LIBRARY_DIR="$HOME/libs"
 SECRETS_FILE_PATH="$HOME/.bash_secrets.sh"
 SYMLINK_FILES=( ".bash_aliases.sh" ".bash_constants.sh" ".bash_profile" ".gitconfig" ".hushlogin" ".zshrc" ".vimrc" ".vim")
 OS="$OSTYPE"
 
 update() {
-  if [[ "$OS" == "linux-gpu"]]; then
+  if [[ "$OS" == "linux-gpu" ]]; then
     sudo apt-get -y update
     sudo apt-get -y install git
   else
@@ -17,10 +18,18 @@ update() {
 
 installVim() {
   # Vim needs installing on linux devices
-  if [[ "$OS" == "linux-gpu"]]; then
-    sudo apt-get -y install vim
+  if [[ "$OS" == "linux-gpu" ]]; then
+    sudo apt-get -y install neovim
+  elif ! NVIM_LOC="$(type -p nvim)" || [ -z "$NVIM_LOC" ]; then
+    brew install neovim
   else
-    echo "Vim does not need installing"
+    echo "Neovim already installed"
+  fi
+
+  # Install vim plug for neovim
+  if [ ! -d "$HOME/.local/share/nvim/site/autoload" ]; then
+    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   fi
 }
 
@@ -109,6 +118,15 @@ installZSH() {
   fi
 }
 
+installNVM() {
+  if [ ! -d "$NVM_HOME" ]; then
+    echo "Installing NVM"
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+  else
+    echo "NVM is already installed!"
+  fi
+}
+
 createSymlinks() {
   echo "Creating symlinks" && \
     cd $HOME
@@ -118,7 +136,10 @@ createSymlinks() {
     ln -sf "$CODE_DIR/$i" .
   done
 
-  echo "Symlinks created!"
+  echo "Basic Symlinks created!"
+  echo "Creating additional symlinks for Neovim config ..."
+  ln -sf "$CODE_DIR/.vimrc" "$HOME/.nvimrc" && \
+    ln -sf "$CODE_DIR/.vim" "$HOME/.nvim"
 }
 
 createSecretsFile() {
@@ -128,10 +149,10 @@ createSecretsFile() {
 
 echo "Running setup script ..." && \
   update && \
-  installVim && \
   installBrew && \
+  installVim && \
+  installNVM && \
   installVSCode && \
-  installChrome && \
   installFF && \
   installZSH && \
   createSymlinks && \

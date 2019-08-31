@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
-export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+fi
 
+alias v="vim"
 alias c="code"
 alias cl="clear"
 alias dc="docker-compose"
@@ -11,7 +14,7 @@ alias n="npm"
 alias ncl="rm -rf node_modules && n i"
 alias nr="npm run"
 nvm() {
-  source $(brew --prefix nvm)/nvm.sh
+  source "$NVM_HOME/nvm.sh"
   nvm use default --silent
   nvm
 }
