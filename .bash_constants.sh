@@ -5,7 +5,7 @@
 export NVM_DIR="$HOME/.nvm"
 
 # ZSH Config
-export ZSH="/Users/sambarker/libs/.oh-my-zsh"
+export ZSH="$HOME/libs/.oh-my-zsh"
 export ZSH_THEME="powerlevel9k/powerlevel9k"
 export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time dir node_version vcs)
 export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()

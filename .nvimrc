@@ -6,6 +6,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
@@ -22,7 +23,7 @@ let g:lightline = {
   \ 'colorscheme': 'onedark',
   \ }
 
-" Custom keybindings to make vim easier
+let g:deoplete#enable_at_startup = 1
 map <C-b> :NERDTreeToggle<CR>
 map <C-p> :Files<CR>
 map <C-q> :wq<CR>

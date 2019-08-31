@@ -8,9 +8,10 @@ SYMLINK_FILES=( ".bash_aliases.sh" ".bash_constants.sh" ".bash_profile" ".gitcon
 OS="$OSTYPE"
 
 update() {
-  if [[ "$OS" == "linux-gpu" ]]; then
+  if [[ "$OS" == "linux-gnu" ]]; then
     sudo apt-get -y update
     sudo apt-get -y install git
+    sudo apt-get -y install curl
   else
     echo "Update not needed as this is not a Linux system"
   fi  
@@ -18,7 +19,7 @@ update() {
 
 installVim() {
   # Vim needs installing on linux devices
-  if [[ "$OS" == "linux-gpu" ]]; then
+  if [[ "$OS" == "linux-gnu" ]]; then
     sudo apt-get -y install neovim
   elif ! NVIM_LOC="$(type -p nvim)" || [ -z "$NVIM_LOC" ]; then
     brew install neovim
@@ -72,7 +73,7 @@ installVSCode() {
 
 installFF() {
   # Firefox comes pre-installed on Ubuntu
-  if [[ "$OSTYPE" == "linux-gpu" ]]; then
+  if [[ "$OSTYPE" == "linux-gnu" ]]; then
     echo "Linux already has Firefox pre-installed!"
     return 0
   fi
@@ -88,9 +89,9 @@ installFF() {
 }
 
 installZSH() {
-  if [[ "$OSTYPE" == "linux-gpu" ]]; then
+  if [[ "$OSTYPE" == "linux-gnu" ]]; then
     sudo apt-get -y install zsh
-    chsh -s $(which zsh)
+    chsh -s /bin/zsh
   elif ! ZSH_LOC="$(type zsh)" || [ -z "$ZSH_LOC" ]; then
     echo " => Installing zsh and setting to default shell ..." &&
     brew install zsh && chsh -s `which zsh` &&
@@ -105,7 +106,7 @@ installZSH() {
 
   if [ ! -d "$ZSH" ]; then
     echo " => Making $ZSH directory" &&
-    mkdir $LIBRARY_DIR &&
+    mkdir -p $LIBRARY_DIR &&
     cd $LIBRARY_DIR &&
     echo " => Installing oh-my-zsh ..." &&
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended &&
@@ -123,6 +124,17 @@ installZSH() {
     echo "zsh-syntax-highlighting installed! 👍"
   else
     echo "zsh-syntax-highlighting already installed! 👍"
+  fi
+
+  # install powerlevel fonts
+  if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+    wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+    mkdir -p ~/.local/share/fonts/
+    mv PowerlineSymbols.otf ~/.local/share/fonts/
+    fc-cache -vf ~/.local/share/fonts/
+    mkdir -p ~/.config/fontconfig/conf.d
+    mv 10-powerline-symbols.conf ~/.config/fontconfig/conf.d/
   fi
 }
 
