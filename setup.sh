@@ -155,6 +155,10 @@ installUtils() {
   else
     brew install fzf
     brew install the_silver_searcher
+    brew install python
+    brew install python3
+    sudo easy_install pip
+    /usr/local/bin/pip install --upgrade pynvim
   fi
 }
 
