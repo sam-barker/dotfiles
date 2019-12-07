@@ -23,6 +23,7 @@ function createSymlinks() {
   ln -sfn "$(pwd)/.gitconfig" "$HOME/.gitconfig"
   ln -sfn "$(pwd)/.hushlogin" "$HOME/.hushlogin"
   ln -sfn "$(pwd)/.zshrc" "$HOME/.zshrc"
+  ln -sfn "$(pwd)/.hyper.js" "$HOME/.hyper.js"
 }
 
 function createSecretsFile() {
