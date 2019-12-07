@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Git
+alias g="git"
+
+# Shell 
+alias cl="clear"
+alias ex="exit"
+alias l='ls -al'
+alias mkdir="mkdir -p"
+
+# Docker
+alias dc="docker-compose"
