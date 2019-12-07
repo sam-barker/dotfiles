@@ -3,14 +3,17 @@
 export GOPATH="$HOME/go"
 export LIBRARY_DIR="$HOME/libs"
 
-declare -xr vs_code_path="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-declare -xr nvm_dir="$HOME/.nvm"
+vs_code_path="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+nvm_dir="$HOME/.nvm"
 
-. "$NVM_DIR/nvm.sh"
-. "$NVM_DIR/bash_completion"
+. "$nvm_dir/nvm.sh"
+. "$nvm_dir/bash_completion"
 . "$HOME/.secrets"
 . "$HOME/.aliases"
+. $(dirname $(gem which colorls))/tab_complete.sh
+. $(brew --prefix)/etc/profile.d/z.sh
 
-nvm use default --silent
-
+export RBENV_ROOT=/usr/local/var/rbenv
 export PATH="$(brew --prefix openvpn)/sbin:$PATH:$vs_code_path"
+
+eval "$(rbenv init -)"

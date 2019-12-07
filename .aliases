@@ -6,8 +6,16 @@ alias g="git"
 # Shell 
 alias cl="clear"
 alias ex="exit"
-alias l='ls -al'
 alias mkdir="mkdir -p"
+
+function ls() {
+  if [ $# -eq 0 ]; then
+    colorls -lA --sd --gs
+  else
+    colorls "$@"
+  fi
+}
 
 # Docker
 alias dc="docker-compose"
+
