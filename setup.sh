@@ -6,7 +6,7 @@ function installHomebrew() {
 }
 
 function brewInstall() {
-  brew bundle
+  brew bundle --file="$HOME/Brewfile"
 }
 
 function installNVM() {
@@ -16,10 +16,23 @@ function installNVM() {
   fi
 }
 
+function installColorLS() {
+  sudo gem install colorls
+}
+
+function installOhMyZsh() {
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+}
+
+function installFonts() {
+  git clone https://github.com/ryanoasis/nerd-fonts.git "$HOME" && \
+  ./$HOME/nerd-fonts/install.sh
+}
+
 function createSymlinks() {
   ln -sfn "$(pwd)/.aliases" "$HOME/.aliases"
   ln -sfn "$(pwd)/.bash_profile" "$HOME/.bash_profile"
-  ln -sfn "$(pwd)/Brewfile" "$HOME/.Brewfile"
+  ln -sfn "$(pwd)/.Brewfile" "$HOME/Brewfile"
   ln -sfn "$(pwd)/.gitconfig" "$HOME/.gitconfig"
   ln -sfn "$(pwd)/.hushlogin" "$HOME/.hushlogin"
   ln -sfn "$(pwd)/.zshrc" "$HOME/.zshrc"
@@ -32,7 +45,10 @@ function createSecretsFile() {
 
 function main() {
   installHomebrew && \
+  installFonts && \
   installNVM && \
+  installOhMyZsh && \
+  installColorLS && \
   createSecretsFile && \
   createSymlinks && \
   brewInstall

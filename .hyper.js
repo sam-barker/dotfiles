@@ -6,7 +6,7 @@ const backgroundColor = '#272935';
 const foregroundColor = '#eff0ea';
 const selectionColor = '#92bbd0';
 const fontSize = 16;
-const fontFamily = '"Source Code Pro for Powerline"';
+const fontFamily = '"Hack Nerd Font"';
 
 const black = '#000000';
 const red = '#ff5b56';
