@@ -1,9 +1,20 @@
 #!/usr/bin/env bash
 
-# Git
-alias g="git"
+# editor
+alias sub="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
-# Shell 
+# Git
+alias g='git'
+alias ga='git add'
+alias gcm='git commit -m'
+alias gd='git diff' 
+alias gco='git checkout'
+alias gnb='git checkout -b'
+alias gs='git status'
+alias gpl='git pull'
+alias gpsh='git push'
+
+# Shell
 alias cl="clear"
 alias ex="exit"
 alias mkdir="mkdir -p"
@@ -16,6 +27,24 @@ function ls() {
   fi
 }
 
+function flip() {
+  case $((RANDOM%2)) in
+    0)
+      echo "heads"
+      ;;
+    1)
+      echo "tails"
+      ;;
+  esac
+}
+
+function ip() {
+  local ip_address
+
+  ip_address=$(curl --silent ipinfo.io/ip)
+
+  echo "${ip_address}"
+}
+
 # Docker
 alias dc="docker-compose"
-
