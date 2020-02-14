@@ -7,12 +7,13 @@ alias sub="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 alias g='git'
 alias ga='git add'
 alias gcm='git commit -m'
-alias gd='git diff' 
+alias gd='git diff'
 alias gco='git checkout'
 alias gnb='git checkout -b'
 alias gs='git status'
 alias gpl='git pull'
 alias gpsh='git push'
+alias gst='git stash'
 
 # Shell
 alias cl="clear"
