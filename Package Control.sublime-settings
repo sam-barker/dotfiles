@@ -1,0 +1,20 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"A File Icon",
+		"DocBlockr",
+		"Material Theme",
+		"Package Control",
+		"RemoteCollab",
+		"SideBarEnhancements",
+		"Simple JSX",
+		"SublimeLinter",
+		"SublimeLinter-eslint",
+		"SublimeLinter-shellcheck",
+		"TypeScript Syntax"
+	]
+}

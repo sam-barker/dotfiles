@@ -3,8 +3,8 @@
 export GOPATH="$HOME/go"
 export LIBRARY_DIR="$HOME/libs"
 
-vs_code_path="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-nvm_dir="$HOME/.nvm"
+declare -r vs_code_path="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+declare -r nvm_dir="$HOME/.nvm"
 
 . "$nvm_dir/nvm.sh"
 . "$nvm_dir/bash_completion"
