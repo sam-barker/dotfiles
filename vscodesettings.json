@@ -1,0 +1,26 @@
+{
+  "editor.tabSize": 2,
+  "editor.fontSize": 16,
+  "window.zoomLevel": 0,
+  "workbench.colorTheme": "Absent (rainglow)",
+  "editor.fontFamily": "'Hack Nerd Font', Menlo, Monaco, 'Courier New', monospace",
+  "workbench.tree.indent": 16,
+  "workbench.editor.closeOnFileDelete": true,
+  "terminal.external.osxExec": "iTerm.app",
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  "liveshare.featureSet": "insiders",
+  "workbench.statusBar.feedback.visible": false,
+  "editor.minimap.enabled": false,
+  "eslint.alwaysShowStatus": true,
+  "npm.enableScriptExplorer": true,
+  "terminal.integrated.scrollback": 5000,
+  "workbench.statusBar.visible": false,
+  "workbench.tips.enabled": false,
+  "breadcrumbs.enabled": false,
+  "explorer.autoReveal": false,
+  "workbench.activityBar.visible": true,
+  "workbench.startupEditor": "newUntitledFile",
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  }
+}

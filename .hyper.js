@@ -94,7 +94,8 @@ module.exports = {
   localPlugins: [],
 
   keymaps: {
-    // Example
-    // 'window:devtools': 'cmd+alt+o',
+    'zoom:out': 'command+_',
+    'pane:splitVertical': 'command+\\',
+    'pane:splitHorizontal': 'command+-',
   },
 };

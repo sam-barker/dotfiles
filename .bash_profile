@@ -3,17 +3,15 @@
 export GOPATH="$HOME/go"
 export LIBRARY_DIR="$HOME/libs"
 
-declare -r vs_code_path="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-declare -r nvm_dir="$HOME/.nvm"
+export VS_CODE_PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+export NVM_DIR="$HOME/.nvm"
 
-. "$nvm_dir/nvm.sh"
-. "$nvm_dir/bash_completion"
+. "$NVM_DIR/nvm.sh"
 . "$HOME/.secrets"
 . "$HOME/.aliases"
 . $(dirname $(gem which colorls))/tab_complete.sh
 . $(brew --prefix)/etc/profile.d/z.sh
 
 export RBENV_ROOT=/usr/local/var/rbenv
-export PATH="$(brew --prefix openvpn)/sbin:$PATH:$vs_code_path"
-
+export PATH="$(brew --prefix openvpn)/sbin:$PATH:$VS_CODE_PATH"
 eval "$(rbenv init -)"

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-declare -xr SUBLIME_HOME="$HOME/Library/Application Support/Sublime Text 3"
+declare -r SUBLIME_HOME="$HOME/Library/Application Support/Sublime Text 3"
+declare -r VSCODE_HOME="$HOME/Library/Application Support/Code"
 
 function install {
   local nvm_home="$HOME/.nvm"
@@ -36,6 +37,8 @@ function create_symlinks {
   ln -sfn "$(pwd)/.hyper.js" "$HOME/.hyper.js"
   ln -sfn "$(pwd)/Preferences.sublime-settings" "$SUBLIME_HOME/Packages/User/Preferences.sublime-settings"
   ln -sfn "$(pwd)/Package Control.sublime-settings" "$SUBLIME_HOME/Packages/User/Package Control.sublime-settings"
+  ln -sfn "$(pwd)/vscodesettings.json" "$VSCODE_HOME/User/settings.json"
+  ln -sfn "$(pwd)/vscodekeybindings.json" "$VSCODE_HOME/User/keybindings.json"
 }
 
 function create_secrets_file {

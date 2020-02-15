@@ -25,6 +25,7 @@ brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 brew "z"
 
+cask "docker"
 cask "firefox"
 cask "font-hack-nerd-font"
 cask "font-source-code-pro"
