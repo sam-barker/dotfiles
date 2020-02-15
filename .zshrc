@@ -1,4 +1,5 @@
-# ZSH Config
+#!/usr/bin/env bash
+
 export PROMPT='%F{green}λ '
 
 . "$HOME/.bash_profile"
