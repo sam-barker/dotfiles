@@ -2,31 +2,6 @@
 declare -r SUBLIME_HOME="$HOME/Library/Application Support/Sublime Text 3"
 declare -r VSCODE_HOME="$HOME/Library/Application Support/Code"
 
-function install {
-  local nvm_home="$HOME/.nvm"
-
-  # Brew, and xcode
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" && \
-  sudo xcode-select --install && \
-  brew update && \
-  brew bundle --file="$HOME/Brewfile"
-
-  if [ ! -d "$nvm_home" ]; then
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-  fi
-
-  # Tools
-  curl -o \
-    "$SUBLIME_HOME/Installed Packages/Package Control.sublime-package" \
-    https://packagecontrol.io/Package%20Control.sublime-package && \
-  sudo gem install colorls && \
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-  # Fonts
-  git clone https://github.com/ryanoasis/nerd-fonts.git "$HOME" && \
-  ./$HOME/nerd-fonts/install.sh
-}
-
 function create_symlinks {
   ln -sfn "$(pwd)/.aliases" "$HOME/.aliases"
   ln -sfn "$(pwd)/.bash_profile" "$HOME/.bash_profile"
@@ -48,12 +23,8 @@ function create_secrets_file {
 function main() {
   if [ "$1" == '--symlinks-only' ]; then
     create_symlinks
-  elif [ "$1" == '--install-only' ]; then
-    install
   else
-    install && \
-    create_symlinks &&
-    create_secrets_file
+    create_secrets_file && create_symlinks
   fi
 }
 
